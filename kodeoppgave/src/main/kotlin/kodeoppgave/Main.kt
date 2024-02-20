@@ -21,7 +21,6 @@ fun run() =
                 jsonSerdes<RSEvent>()
             )
         )
-            .filter { _, v -> !v.deleted }
             .toTable(
                 Materialized.with(Serdes.String(), jsonSerdes<RSEvent>())
             )
@@ -33,7 +32,6 @@ fun run() =
                 jsonSerdes<RSIncident>()
             )
         )
-            .filter { _, v -> !v.deleted }
             .map { _, v ->
                 KeyValue(v.referencedParticipantId, v)
             }
@@ -48,7 +46,7 @@ fun run() =
                 jsonSerdes<RSParticipant>()
             )
         )
-            .filter { _, v -> !v.deleted }
+            .filter { _, v -> v.country != null }
             .toTable(
                 Materialized.with(Serdes.String(), jsonSerdes<RSParticipant>())
             )

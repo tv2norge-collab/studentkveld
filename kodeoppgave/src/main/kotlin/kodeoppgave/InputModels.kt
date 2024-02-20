@@ -7,7 +7,7 @@ data class RSParticipant(
     val name: String,
     val gender: String,
     val type: String,
-    val country: Country,
+    val country: Country?,
     val images : List<Image>,
     val toBeDecided : Boolean,
     val deleted : Boolean,

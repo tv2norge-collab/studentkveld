@@ -138,4 +138,5 @@ for samme spiller som vi mister pga at vi kun tar vare på siste melding for hve
 
 ### Oppgave 3
 Den som har skrevet koden har begynt å joine sammen hendelser, spillere og sportsarrangement, og gruppert de etter 
-hvilket sportsarrangement de tilhører. Kan du aggregere opp meldingene slik at vi får en melding per sportsarrangement?
+hvilket sportsarrangement de tilhører. Kan du aggregere opp meldingene slik at vi får en melding per sportsarrangement, 
+og skrive dette til et output topic? (Hint: incidentParticipant skrives allerede til et output topic)

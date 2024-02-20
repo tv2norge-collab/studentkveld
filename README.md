@@ -125,6 +125,12 @@ sportsarrangementer, hendelser fra sportsarrangmeneter, og metadata om deltakere
 hver melding inneholder alle hendelser fra et arrangement, og metadata om deltakerne som utløste hver hendelse. Det er 
 flere tester som feiler, noe som tilsier at det er noe som ikke fungerer som det skal.
 
+### Hvordan kjøre prosjektet
+Prosjektets main funksjon er ment å blir kjørt fra et cluster som har tilgang til det relevante kafka-clusteret. Det har 
+vi ikke lokalt, derfor kjører man heller testene som setter opp sitt eget kafka cluster, og populerer det med 
+sportsdata-meldinger. Dette gjøres ved å høyreklikke på kodeoppgave-directoriet og velge "Run tests". Hver oppgave 
+korresponderer med en test som feiler.
+
 
 ### Oppgave 1
 Applikasjonen vår støter på problemer fordi topicet med deltakere inneholder tombstones som vi ikke håndterer. Klarer 
@@ -134,9 +140,10 @@ du å filtrere disse vekk?
 Den som har skrevet denne koden keyer hendelser på spiller-IDen til den som utløste hendelsen for å joine hendelser og 
 spillere sammen. Dette fungerer ikke fordi samme spiller kan utløse flere hendelser, og vi får derfor flere meldinger 
 for samme spiller som vi mister pga at vi kun tar vare på siste melding for hver key. Kan du fikse dette? 
-(Hint: bruk foreign-key join)
+(Hint: bruk foreign-key join, det er allerede brukt en lengre nede i koden du kan se på)
 
 ### Oppgave 3
 Den som har skrevet koden har begynt å joine sammen hendelser, spillere og sportsarrangement, og gruppert de etter 
-hvilket sportsarrangement de tilhører. Kan du aggregere opp meldingene slik at vi får en melding per sportsarrangement, 
-og skrive dette til et output topic? (Hint: incidentParticipant skrives allerede til et output topic)
+hvilket sportsarrangement de tilhører. Kan du aggregere opp meldingene slik at vi får en melding per sportsarrangement 
+på formatet til klassen IncidentParticipantByEvent fra outputmodels, og skrive dette til et output topic? 
+(Hint: incidentParticipant skrives allerede til et output topic, har kan mye av koden kopieres)

@@ -1,0 +1,23 @@
+[versions]
+kotest = "5.8.0"
+jackson = "2.16.1"
+kafkaStreams = "3.6.1"
+
+[libraries]
+
+# Jackson
+jackson = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jacksonKotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+jacksonJsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+
+# Test
+junit5Runner = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
+assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+
+# Kafka Streams
+kafkaStreams = { module = "org.apache.kafka:kafka-streams", version.ref = "kafkaStreams" }
+kafkaStreamsTest = { module = "org.apache.kafka:kafka-streams-test-utils", version.ref = "kafkaStreams" }
+
+[bundles]
+unitTest = ["junit5Runner", "assertions", "kafkaStreamsTest"]
+jackson = ["jackson", "jacksonKotlin", "jacksonJsr310"]

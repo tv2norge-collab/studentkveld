@@ -12,15 +12,15 @@ data class TestContext(
     val rsIncident: TestInputTopic<String, RSIncident>,
     val rsEvent: TestInputTopic<String, RSEvent>,
     val rsParticipant: TestInputTopic<String, RSParticipant>,
-    val incidentParticipantOutput: TestOutputTopic<String, IncidentParticipant>,
-    val incidentParticipantByEventOutput: TestOutputTopic<String, IncidentParticipantByEvent>
+    val incidentParticipantByEventOutput: TestOutputTopic<String, IncidentParticipantListWrapper>,
+    val eventMetadataOutput: TestOutputTopic<String, EventMetadata>
 )
 
 class TestDriver() {
 
     private val driver =
         TopologyTestDriver(
-            run().build(),
+            Topology.run().build(),
             Properties().apply {
                 put(
                     StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.StringSerde::class.java
@@ -44,15 +44,15 @@ class TestDriver() {
             Serdes.String().serializer(),
             jsonSerdes<RSParticipant>().serializer()
         ),
-        incidentParticipantOutput = driver.createOutputTopic(
-            "incidentParticipant",
-            Serdes.String().deserializer(),
-            jsonSerdes<IncidentParticipant>().deserializer()
-        ),
         incidentParticipantByEventOutput = driver.createOutputTopic(
             "incidentParticipantByEvent",
             Serdes.String().deserializer(),
-            jsonSerdes<IncidentParticipantByEvent>().deserializer()
+            jsonSerdes<IncidentParticipantListWrapper>().deserializer()
+        ),
+        eventMetadataOutput = driver.createOutputTopic(
+            "eventMetadata",
+            Serdes.String().deserializer(),
+            jsonSerdes<EventMetadata>().deserializer()
         )
     )
 

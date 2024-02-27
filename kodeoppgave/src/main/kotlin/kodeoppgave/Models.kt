@@ -10,7 +10,6 @@ data class RSParticipant(
     val country: Country?,
     val images : List<Image>,
     val toBeDecided : Boolean,
-    val deleted : Boolean,
 )
 
 data class RSEvent(
@@ -24,7 +23,6 @@ data class RSEvent(
     val status : String,
     val statusDescription : String?,
     val images : List<Any>,
-    val deleted : Boolean
 )
 
 data class RSIncident(
@@ -36,7 +34,6 @@ data class RSIncident(
     val incidentType : String,
     val elapsedTime : Int,
     val sortOrder : Int,
-    val deleted : Boolean
 )
 
 data class Country(
@@ -47,4 +44,18 @@ data class Country(
 
 data class Image(
     val url: String
+)
+
+data class IncidentParticipantListWrapper(val list: List<IncidentParticipant>)
+
+
+data class IncidentParticipant(
+    val incident: RSIncident,
+    val participant: RSParticipant
+)
+
+data class EventMetadata(
+    val eventId: String,
+    val name: String,
+    val incidents: List<IncidentParticipant>
 )

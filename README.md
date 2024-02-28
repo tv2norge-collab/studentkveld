@@ -52,7 +52,7 @@ var someTable = builder.stream(
         )
     );
 ```
-I et table må vi huske å serialisere dataene igjen, gjort med `Materialized.with(Serdes.String(), jsonSerdes<SomeObject>())`
+I et table må vi huske å serialisere dataene igjen, gjort med `Materialized.with(Serdes.String(), jsonSerdes<>(SomeObject.class))`
 
 ### Tombstones
 Kafka er kjent for å være raskt og skalerbart, men det medfører noen ulemper. En av disse er at det er vanskelig å 
